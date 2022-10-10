@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     }
 
     public gameState state;
-
+    
+    
     bool done = false;
     int loadstate = 1;
     int txt = 0;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        state = gameState.PLAY;   
     }
 
     // Update is called once per frame
@@ -65,7 +66,7 @@ public class GameManager : MonoBehaviour
                                     if (timer > 0)
                                     {
                                         timer -= Time.deltaTime;
-                                        Debug.Log(timer);
+                                        //Debug.Log(timer);
                                     }
                                     else txt = 1;
                                     break;
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
                                     if (titleName.gameObject.GetComponent<TMP_Text>().color.a < 1)
                                     {
                                         Color temp = titleName.gameObject.GetComponent<TMP_Text>().color;
-                                        Debug.Log(temp.a);
+                                        //Debug.Log(temp.a);
                                         temp.a += Time.deltaTime / 2;
                                         titleName.gameObject.GetComponent<TMP_Text>().color = temp;
 
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
                                     if (titleName.gameObject.GetComponent<TMP_Text>().color.a > 0)
                                     {
                                         Color temp = titleName.gameObject.GetComponent<TMP_Text>().color;
-                                        Debug.Log(temp.a);
+                                        //Debug.Log(temp.a);
                                         temp.a -= Time.deltaTime / 2;
                                         titleName.gameObject.GetComponent<TMP_Text>().color = temp;
                                     }
@@ -93,10 +94,8 @@ public class GameManager : MonoBehaviour
                                     break;
 
                             }
-
                             break;
                         case 3:
-
                             switch (txt)
                             {
                                 case 1:
@@ -107,6 +106,7 @@ public class GameManager : MonoBehaviour
                                         titleTitle.gameObject.GetComponent<TMP_Text>().color = temp;
                                     }
                                     else txt = 2;
+                                    timer = 0.5f;
                                     break;
                                 case 2:
                                     if (titleTitle.gameObject.GetComponent<TMP_Text>().color.a >= 0)
@@ -116,7 +116,13 @@ public class GameManager : MonoBehaviour
                                         temp.a -= Time.deltaTime / 2;
                                         titleTitle.gameObject.GetComponent<TMP_Text>().color = temp;
                                     }
-                                    else done = true;
+                                    else
+                                    {
+                                        if (timer > 0) timer -= Time.deltaTime;
+                                        else done = true;
+                                    }
+                                    
+                                    
                                     break;
 
                             }
@@ -126,6 +132,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    
                     state = gameState.MENU;
                     island.gameObject.SetActive(true);
                 }
@@ -143,6 +150,9 @@ public class GameManager : MonoBehaviour
 
             case gameState.OPTIONS:
                 Debug.Log("Options");
+                break;
+
+            case gameState.PLAY:
                 break;
         }
 

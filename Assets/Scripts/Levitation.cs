@@ -17,7 +17,9 @@ public class Levitation : MonoBehaviour
     {
         //   (Vector3.one * Mathf.Sin(Time.time) / 8) + Vector3.one;
         Vector3 position = this.gameObject.transform.position;
-        position += Vector3.one * Mathf.Sin(Time.time);
+        position.y += Mathf.Sin(Time.time) / 1000;
+        this.gameObject.transform.position = position;
+
 
         //Debug.Log(Vector3.one * Mathf.Sin(Time.time));
 
