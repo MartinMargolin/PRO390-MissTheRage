@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactive : MonoBehaviour
 {
-
+    
     [SerializeField] GameObject destroyed;
     [SerializeField] public int durability;
     [SerializeField] public bool broken = false;
@@ -13,7 +13,7 @@ public class Interactive : MonoBehaviour
     void Start()
     {
 
-        
+    
 
     }
 
@@ -22,12 +22,12 @@ public class Interactive : MonoBehaviour
     {
         if (durability == 0 && !dontUpdate)
         {
-
-            Debug.Log("BREAK");
+            //Debug.Log("BREAK");
             /*Instantiate(destroyed);*/
             //  GameObject.Instantiate(destroyed);  
-            Instantiate<GameObject>(destroyed);
-            destroyed.GetComponent<Breakable>().Make(this.gameObject);
+            Instantiate<GameObject>(destroyed).GetComponent<Breakable>().intact = gameObject;
+       
+            //destroyed.GetComponent<Breakable>().Make(this.gameObject);
             broken = true;
             gameObject.SetActive(false);
             dontUpdate = true;

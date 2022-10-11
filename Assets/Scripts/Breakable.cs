@@ -6,7 +6,7 @@ public class Breakable : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField] GameObject parent;
+    [SerializeField] public GameObject intact;
     [SerializeField] GibsManager gibsManager;
     [SerializeField] List<GameObject> parts;
    
@@ -14,17 +14,18 @@ public class Breakable : MonoBehaviour
 
     void Start()
     {
-        
+        gibsManager = GameObject.Find("GameManager").GetComponent<GibsManager>();
     }
     
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(parent);
+        Debug.Log(intact);
 
-        if (parent.GetComponent<Interactive>().broken && !dontUpdate)
+        if (intact.GetComponent<Interactive>().broken && !dontUpdate)
         {
-            //parent.SetActive(false);
+            //intact.SetActive(false);
+            transform.position = intact.transform.position;
             gameObject.SetActive(true);
             foreach (var part in parts)
             {
@@ -42,14 +43,15 @@ public class Breakable : MonoBehaviour
     }
 
 
-    public void Make(GameObject p)
+   /* public void Make(GameObject p)
     {
-        parent = p;
-        Debug.Log(parent);
+
+        intact = p;
+        Debug.Log(intact);
         gibsManager = GameObject.Find("GameManager").GetComponent<GibsManager>();
         Debug.Log(gibsManager);
-        transform.position = parent.transform.position;
-    }
+       
+    }*/
 
     public void Despawn()
     {
