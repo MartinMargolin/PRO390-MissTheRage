@@ -21,13 +21,8 @@ public class Interactive : MonoBehaviour
     void Update()
     {
         if (durability == 0 && !dontUpdate)
-        {
-            //Debug.Log("BREAK");
-            /*Instantiate(destroyed);*/
-            //  GameObject.Instantiate(destroyed);  
+        {          
             Instantiate<GameObject>(destroyed).GetComponent<Breakable>().intact = gameObject;
-       
-            //destroyed.GetComponent<Breakable>().Make(this.gameObject);
             broken = true;
             gameObject.SetActive(false);
             dontUpdate = true;

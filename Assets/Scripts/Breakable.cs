@@ -20,11 +20,11 @@ public class Breakable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(intact);
 
-        if (intact.GetComponent<Interactive>().broken && !dontUpdate)
+
+        if (!dontUpdate) if (intact.GetComponent<Interactive>().broken)
         {
-            //intact.SetActive(false);
+            
             transform.position = intact.transform.position;
             gameObject.SetActive(true);
             foreach (var part in parts)
@@ -35,23 +35,13 @@ public class Breakable : MonoBehaviour
                 gibsManager.Add(part);
 
             }
-            Debug.Log("BREAK COMPLETE");
+            Destroy(intact);
             dontUpdate = true; 
+            
         }
         
 
     }
-
-
-   /* public void Make(GameObject p)
-    {
-
-        intact = p;
-        Debug.Log(intact);
-        gibsManager = GameObject.Find("GameManager").GetComponent<GibsManager>();
-        Debug.Log(gibsManager);
-       
-    }*/
 
     public void Despawn()
     {

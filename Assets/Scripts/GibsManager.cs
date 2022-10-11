@@ -19,7 +19,11 @@ public class GibsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            while (gibs.Count > options.maxGibs) gibs.RemoveAt(0);
+        while (gibs.Count > options.maxGibs)
+        {
+            Destroy(gibs[0]);
+            gibs.RemoveAt(0);
+        }
 
         if (testClear == true)
         {
