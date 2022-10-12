@@ -21,6 +21,7 @@ public class GibsManager : MonoBehaviour
     {
         while (gibs.Count > options.maxGibs)
         {
+            gibs[0].GetComponentInParent<Breakable>().parts.Remove(gibs[0]);
             Destroy(gibs[0]);
             gibs.RemoveAt(0);
         }
@@ -39,6 +40,7 @@ public class GibsManager : MonoBehaviour
         {
             foreach (var gib in gibs)
             {
+                gib.GetComponentInParent<Breakable>().parts.Remove(gib);
                 Destroy(gib.gameObject);
             }
             gibs.Clear();
@@ -51,6 +53,7 @@ public class GibsManager : MonoBehaviour
     {
         foreach(var part in parts)
         {
+           
             gibs.Remove(part);
         }
     }

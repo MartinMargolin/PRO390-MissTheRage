@@ -8,8 +8,9 @@ public class Breakable : MonoBehaviour
 
     [SerializeField] public GameObject intact;
     [SerializeField] GibsManager gibsManager;
-    [SerializeField] List<GameObject> parts;
-   
+    [SerializeField] public List<GameObject> parts;
+ 
+
     bool dontUpdate = false;
 
     void Start()
@@ -24,8 +25,9 @@ public class Breakable : MonoBehaviour
 
         if (!dontUpdate) if (intact.GetComponent<Interactive>().broken)
         {
-            
             transform.position = intact.transform.position;
+            transform.rotation = intact.transform.rotation;
+           
             gameObject.SetActive(true);
             foreach (var part in parts)
             {
@@ -33,12 +35,15 @@ public class Breakable : MonoBehaviour
                 part.GetComponent<MeshCollider>().convex = true;
                 part.AddComponent<Rigidbody>();
                 gibsManager.Add(part);
+                part.GetComponent<Rigidbody>().velocity = intact.GetComponent<Rigidbody>().velocity;
 
             }
+           
             Destroy(intact);
             dontUpdate = true; 
             
         }
+        if (parts.Count == 0) Destroy(gameObject);
         
 
     }
@@ -48,6 +53,7 @@ public class Breakable : MonoBehaviour
         gibsManager.Remove(parts);
         foreach(var part in parts)
         {
+            parts.Remove(part);
             Destroy(part.gameObject);
         }
     }
