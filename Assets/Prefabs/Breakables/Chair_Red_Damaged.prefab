@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intact: {fileID: 0}
-  type: 1
 --- !u!33 &1152772527415079501
 MeshFilter:
   m_ObjectHideFlags: 0

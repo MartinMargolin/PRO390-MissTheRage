@@ -5,10 +5,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] public GameObject icon;
+    [SerializeField] public Transform holding;
     
     void Start()
     {
-        gameObject.SetActive(false);
+    
     }
 
     // Update is called once per frame
