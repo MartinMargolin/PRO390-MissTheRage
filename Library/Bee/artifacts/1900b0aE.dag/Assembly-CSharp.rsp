@@ -387,6 +387,7 @@
 "Assets/Scripts/Breakable.cs"
 "Assets/Scripts/Damagable.cs"
 "Assets/Scripts/Equip.cs"
+"Assets/Scripts/Flicker.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GibsManager.cs"
 "Assets/Scripts/Hand.cs"

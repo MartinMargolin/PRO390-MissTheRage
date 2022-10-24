@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Equip.cs" />
     <Compile Include="Assets\Scripts\Options.cs" />
     <Compile Include="Assets\Scripts\Breakable.cs" />
+    <Compile Include="Assets\Scripts\Flicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

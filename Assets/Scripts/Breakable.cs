@@ -31,8 +31,7 @@ public class Breakable : MonoBehaviour
             gameObject.SetActive(true);
             foreach (var part in parts)
             {
-                part.AddComponent<MeshCollider>();
-                part.GetComponent<MeshCollider>().convex = true;
+                part.AddComponent<BoxCollider>();
                 part.AddComponent<Rigidbody>();
                 gibsManager.Add(part);
                 part.GetComponent<Rigidbody>().velocity = intact.GetComponent<Rigidbody>().velocity;
