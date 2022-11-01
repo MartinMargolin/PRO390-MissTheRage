@@ -6,11 +6,18 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Menu menu;
-
+  
     // LoadingScreen
     [SerializeField] GameObject titleName;
     [SerializeField] GameObject titleTitle;
-    [SerializeField] GameObject island;
+    
+    // Loaded Pieces
+    [SerializeField] GameObject menuObject;
+    [SerializeField] GameObject levelSelectObject;
+    [SerializeField] GameObject optionsObject;
+    [SerializeField] List<GameObject> levels = new List<GameObject>();
+    
+
 
     public enum gameState
     {
@@ -35,7 +42,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = gameState.PLAY;   
+        state = gameState.LOAD;   
     }
 
     // Update is called once per frame
@@ -134,11 +141,15 @@ public class GameManager : MonoBehaviour
                 {
                     
                     state = gameState.MENU;
-                    island.gameObject.SetActive(true);
+                    menuObject.gameObject.SetActive(true);
                 }
                 break;
 
             case gameState.MENU:
+
+                if (menuObject.activeSelf == false) menuObject.SetActive(true);
+                if (levelSelectObject.activeSelf == true) levelSelectObject.SetActive(false);
+                //if (optionsObject.activeSelf == true) optionsObject.SetActive(false);
                 if (menu.topIsSelected) { state = gameState.LEVELSELECT; }
                 if (menu.bottomIsSelected) { state = gameState.OPTIONS; }
 
@@ -146,10 +157,14 @@ public class GameManager : MonoBehaviour
 
             case gameState.LEVELSELECT:
                 Debug.Log("Level");
+                menuObject.gameObject.SetActive(false);
+                levelSelectObject.gameObject.SetActive(true);
                 break;
 
             case gameState.OPTIONS:
                 Debug.Log("Options");
+                menuObject.gameObject.SetActive(false);
+                optionsObject.gameObject.SetActive(true);
                 break;
 
             case gameState.PLAY:

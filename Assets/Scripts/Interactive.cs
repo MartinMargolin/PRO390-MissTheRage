@@ -48,5 +48,6 @@ public class Interactive : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Weapon" && durability > 0) durability--;
+        // if not 0 play hit sound if 0 play break sound
     }
 }
